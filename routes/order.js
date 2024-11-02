@@ -38,8 +38,10 @@ orderPlaced.post("/", async (req, res) => {
     // console.log(checkUserOrderExistedQuery.rows);
     // return res.status(409).json({ message: "Already Order placed!" });
     // } else {
+    const invoiceStatus = "pending";
     const insertOrderDetails = `INSERT INTO order_details (referral_id,
-    category, item, quantity, rate, total_amount, address, order_status, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
+    category, item, quantity, rate, total_amount, address, invoice_status,
+     order_status, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
 
     await pool.query(insertOrderDetails, [
       referralId,
@@ -49,6 +51,7 @@ orderPlaced.post("/", async (req, res) => {
       rate,
       totalAmount,
       address,
+      invoiceStatus,
       orderStatus,
       userId,
     ]);

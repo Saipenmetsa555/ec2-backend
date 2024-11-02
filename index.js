@@ -16,6 +16,12 @@ import { orderGet, orderData } from "./routes/order.js";
 
 import { sendInvoice, invoiceGet } from "./routes/invoice.js";
 
+import { receivedOrdersFromUser } from "./routes/receiveOrdersbyName.js";
+import { updateInvoiceStatus } from "./routes/receiveOrdersbyName.js";
+import { getOrderDetailsToAdmin } from "./routes/receiveOrdersbyName.js";
+import { updateInvoiceStatusByAdmin } from "./routes/receiveOrdersbyName.js";
+import { getInvoiceByUser } from "./routes/receiveOrdersbyName.js";
+
 const app = express();
 const port = 4000;
 
@@ -39,6 +45,12 @@ app.use("/", orderData);
 
 app.use("/sendInvoice", sendInvoice);
 app.use("/invoiceGet", invoiceGet);
+
+app.use("/", receivedOrdersFromUser);
+app.use("/", updateInvoiceStatus);
+app.use("/", getOrderDetailsToAdmin);
+app.use("/", updateInvoiceStatusByAdmin);
+app.use("/", getInvoiceByUser);
 
 app.listen(port, () => {
   console.log(`SERVER RUNNING at ${port}`);
